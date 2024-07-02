@@ -1,11 +1,15 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
-    <h1>Register</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">submit</button>
-        <a href="{% url 'apps:login' %}">Already have account?</a>
-    </form>
+<div class="flex justify-center items-center h-screen bg-gray-100">
+    <div class="max-w-md w-full p-8 bg-white rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold text-gray-900 mb-8">Register</h1>
+        <form method="post" class="flex flex-col gap-2">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Submit</button>
+            <a href="{% url 'apps:login' %}" class="block mt-4 text-sm text-blue-500 hover:text-blue-600">Already have an account?</a>
+        </form>
+    </div>
+</div>
 {% endblock %}

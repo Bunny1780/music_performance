@@ -1,17 +1,24 @@
+{% extends 'layouts/base.html' %}
+
 {% block content %}
-    <h1 class="text-red-500">LIST</h1>
+<div class="max-w-4xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-4">LIST</h1>
+
     <form method="GET" class="my-4">
-        <input type="text" name="search" placeholder="Search by title" class="border p-2">
-        <button type="submit" class="bg-blue-500 text-white p-2">Search</button>
+        <input type="text" name="search" placeholder="搜尋標題" class="border p-2">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md ml-2">搜尋</button>
     </form>
 
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white border border-gray-200">
             <thead>
                 <tr>
-                    <th class="px-4 py-2 border">Title</th>
-                    <th class="px-4 py-2 border">Start Date</th>
-                    <th class="px-4 py-2 border">End Date</th>
+                    <th class="px-4 py-2 border">標題</th>
+                    <th class="px-4 py-2 border">開始時間</th>
+                    <th class="px-4 py-2 border">結束時間</th>
+                    {% if request.user.is_authenticated %}
+                        <th class="px-4 py-2 border">-</th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
@@ -21,10 +28,11 @@
                     <td class="px-4 py-2 border">{{ musicEvent.start_date|date:"Y-m-d H:i" }}</td>
                     <td class="px-4 py-2 border">{{ musicEvent.end_date|date:"Y-m-d H:i" }}</td>
                     {% if request.user.is_authenticated %}
-                        <td><a href="{% url 'apps:edit' musicEvent.id %}">更新</a></td>
-                        <td>
-                            <form action="{% url 'apps:delete' musicEvent.id %}">
-                                <button type="submit">刪除</button>
+                        <td class="px-4 py-2 border">
+                            <a href="{% url 'apps:edit' musicEvent.id %}" class="text-blue-500 hover:text-blue-600 mr-2">更新</a>
+                            <form action="{% url 'apps:delete' musicEvent.id %}" method="post" class="inline">
+                                {% csrf_token %}
+                                <button type="submit" class="text-red-500 hover:text-red-600">刪除</button>
                             </form>
                         </td>
                     {% endif %}
@@ -33,4 +41,5 @@
             </tbody>
         </table>
     </div>
+</div>
 {% endblock content %}

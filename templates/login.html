@@ -1,15 +1,16 @@
-<!-- login.html -->
 {% extends 'layouts/base.html' %}
 
 {% load static %}
 {% block content %}
-<div class="max-w-md w-full p-8 bg-white rounded-lg shadow-lg">
-    <h1>Login</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Login</button>
-        <a href="{% url 'apps:register' %}">Dont have Account Create</a>
-    </form>
+<div class="flex justify-center items-center h-screen bg-gray-100">
+    <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-4">登入</h1>
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md">登入</button>
+            <p class="text-center">還沒有帳號？<a href="{% url 'apps:register' %}" class="text-blue-500 hover:underline">點擊註冊</a></p>
+        </form>
+    </div>
 </div>
 {% endblock %}
