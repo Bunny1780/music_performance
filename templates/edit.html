@@ -1,0 +1,10 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h1>Update</h1>
+    <form action="{% url 'apps:edit' musicEvent.id %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">更新</button>
+    </form>
+{% endblock %}

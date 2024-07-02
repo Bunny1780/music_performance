@@ -1,0 +1,24 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<div class="overflow-x-auto">
+    <table class="min-w-full bg-white border border-gray-200">
+        <thead>
+            <tr>
+                <th class="px-4 py-2 border">Title</th>
+                <th class="px-4 py-2 border">Start Date</th>
+                <th class="px-4 py-2 border">End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for musicEvent in musicEvents %}
+            <tr class="border-t">
+                <td class="px-4 py-2 border">{{ musicEvent.title }}</td>
+                <td class="px-4 py-2 border">{{ musicEvent.start_date|date:"Y-m-d H:i" }}</td>
+                <td class="px-4 py-2 border">{{ musicEvent.end_date|date:"Y-m-d H:i" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

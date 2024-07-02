@@ -1,0 +1,15 @@
+<!-- login.html -->
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+{% block content %}
+<div class="max-w-md w-full p-8 bg-white rounded-lg shadow-lg">
+    <h1>Login</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Login</button>
+        <a href="{% url 'apps:register' %}">Dont have Account Create</a>
+    </form>
+</div>
+{% endblock %}
