@@ -1,11 +1,11 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
-    <h1>Signup</h1>
+    <h1>Register</h1>
     <form method="post">
         {% csrf_token %}
         {{ form }}
-        <button type="submit">signup</button>
+        <button type="submit">submit</button>
         <a href="{% url 'apps:login' %}">Already have account?</a>
     </form>
 {% endblock %}
