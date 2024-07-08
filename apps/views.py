@@ -3,15 +3,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm, EditForm
-from .models import DataModel, Location, Unit, MusicEvent
+from .models import Location, Unit, MusicEvent
 
 def index(request):
-    search_query = request.GET.get('search', '')
-    if search_query:
-        music_events = MusicEvent.objects.filter(title__icontains=search_query)
-    else:
-        music_events = MusicEvent.objects.all()
-    return render(request, "index.html", {"musicEvents": music_events})
+    return render(request, "index.html")
 
 def user_login(req):
     if req.method == "POST":
